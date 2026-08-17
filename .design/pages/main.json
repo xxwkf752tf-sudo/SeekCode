@@ -1,0 +1,10 @@
+{
+  "id": "main",
+  "type": "page",
+  "name": "主界面",
+  "title": "seekcode",
+  "path": "ui/index.html",
+  "description": "SeekCode Windows 桌面端主界面：包含标题栏、对话区、控制面板、输入区及系统提示词弹窗。",
+  "thumbnail": null,
+  "tags": ["desktop", "chat", "ai", "terminal"]
+}

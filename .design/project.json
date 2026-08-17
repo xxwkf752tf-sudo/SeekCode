@@ -1,0 +1,24 @@
+{
+  "name": "seekcode",
+  "displayName": "SeekCode",
+  "description": "Windows 桌面端 AI 终端助手 —— 阶段一前端 UI 原型",
+  "version": "0.1.0",
+  "type": "app",
+  "theme": "claude",
+  "entry": "ui/index.html",
+  "pages": [
+    {
+      "id": "main",
+      "name": "主界面",
+      "path": "ui/index.html",
+      "type": "page"
+    }
+  ],
+  "assets": [
+    "ui/styles.css",
+    "ui/app.js"
+  ],
+  "designLibrary": {
+    "reference": "Claude"
+  }
+}

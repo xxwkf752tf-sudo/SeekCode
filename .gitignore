@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+*.env
+pip-log.txt
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+*.spec
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Local runtime data (user config lives in APPDATA, not here)
+config.json
+sessions/
+backups/
+memory/
