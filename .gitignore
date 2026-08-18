@@ -24,6 +24,7 @@ Thumbs.db
 
 # Logs
 *.log
+start_debug.*
 
 # Local runtime data (user config lives in APPDATA, not here)
 config.json
