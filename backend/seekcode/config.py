@@ -1,13 +1,84 @@
 """SeekCode 配置管理模块。"""
 
+import base64
+import ctypes
 import json
 import os
+import sys
 from pathlib import Path
 from tempfile import mkstemp
 
 from pydantic import BaseModel
 
 from .paths import app_dir
+
+_ENCRYPT_PREFIX = "dpapi:"
+
+
+class _DataBlob(ctypes.Structure):
+    """Windows DATA_BLOB 结构，用于 DPAPI 加解密。"""
+
+    _fields_ = [
+        ("cbData", ctypes.c_uint32),
+        ("pbData", ctypes.POINTER(ctypes.c_char)),
+    ]
+
+
+def _dpapi_encrypt(plaintext: str) -> str:
+    """使用 Windows DPAPI 加密文本；非 Windows 环境使用兼容性标记。"""
+    if not plaintext:
+        return ""
+    encoded = plaintext.encode("utf-8")
+    if sys.platform != "win32":
+        # 非 Windows 环境仅做 base64 标记，避免开发测试时完全无法运行
+        return f"{_ENCRYPT_PREFIX}plaintext:{base64.b64encode(encoded).decode('ascii')}"
+
+    blob_in = _DataBlob()
+    blob_out = _DataBlob()
+    buffer_in = ctypes.create_string_buffer(encoded)
+    blob_in.cbData = len(encoded)
+    blob_in.pbData = ctypes.cast(buffer_in, ctypes.POINTER(ctypes.c_char))
+    ok = ctypes.windll.crypt32.CryptProtectData(
+        ctypes.byref(blob_in), None, None, None, None, 0, ctypes.byref(blob_out)
+    )
+    if not ok:
+        raise ctypes.WinError(ctypes.get_last_error())
+    encrypted = ctypes.string_at(blob_out.pbData, blob_out.cbData)
+    ctypes.windll.kernel32.LocalFree(blob_out.pbData)
+    return f"{_ENCRYPT_PREFIX}{base64.b64encode(encrypted).decode('ascii')}"
+
+
+def _dpapi_decrypt(value: str) -> str:
+    """使用 Windows DPAPI 解密文本；兼容旧版本明文。"""
+    if not value:
+        return ""
+    if not value.startswith(_ENCRYPT_PREFIX):
+        # 旧版本明文，自动迁移到加密存储
+        return value
+
+    payload = value[len(_ENCRYPT_PREFIX) :]
+    if payload.startswith("plaintext:"):
+        # 非 Windows 兼容性标记
+        return base64.b64decode(payload[len("plaintext:") :]).decode("utf-8")
+
+    encrypted = base64.b64decode(payload)
+    if sys.platform != "win32":
+        # Windows 加密的数据在非 Windows 环境无法解密
+        return ""
+
+    blob_in = _DataBlob()
+    blob_out = _DataBlob()
+    buffer_in = ctypes.create_string_buffer(encrypted)
+    blob_in.cbData = len(encrypted)
+    blob_in.pbData = ctypes.cast(buffer_in, ctypes.POINTER(ctypes.c_char))
+    ok = ctypes.windll.crypt32.CryptUnprotectData(
+        ctypes.byref(blob_in), None, None, None, None, 0, ctypes.byref(blob_out)
+    )
+    if not ok:
+        raise ctypes.WinError(ctypes.get_last_error())
+    decrypted = ctypes.string_at(blob_out.pbData, blob_out.cbData)
+    ctypes.windll.kernel32.LocalFree(blob_out.pbData)
+    return decrypted.decode("utf-8")
 
 DEFAULT_SYSTEM_PROMPT = """你是 SeekCode，一名基于 DeepSeek 模型的交互式终端助手，专门通过 Windows 命令行帮助用户完成软件工程任务。
 
@@ -79,6 +150,12 @@ def load_config() -> Config:
         try:
             with open(path, "r", encoding="utf-8") as f:
                 data = json.load(f)
+            raw_key = data.get("api_key", "")
+            try:
+                data["api_key"] = _dpapi_decrypt(raw_key)
+            except Exception:
+                # 解密失败（如配置文件被复制到其他用户）时清空 API Key，保留其余配置
+                data["api_key"] = ""
             return Config(**data)
         except Exception:
             # 配置文件损坏时回退到默认配置
@@ -90,6 +167,7 @@ async def save_config(config: Config) -> None:
     """异步原子保存配置到本地文件。"""
     path = config_path()
     data = config.model_dump()
+    data["api_key"] = _dpapi_encrypt(data["api_key"])
     fd, tmp = mkstemp(dir=path.parent, prefix="config_", suffix=".tmp")
     try:
         with os.fdopen(fd, "w", encoding="utf-8") as f:
