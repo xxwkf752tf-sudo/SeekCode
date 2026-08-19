@@ -148,6 +148,22 @@ def _build_messages(session: dict, config: Config, attached_file: Path = None) -
         content = msg.get("content", "")
         if role in ("user", "assistant", "system"):
             messages.append({"role": role, "content": content})
+        elif role == "terminal":
+            # 将终端输出以系统消息形式回传给 AI，使其能基于命令结果继续思考
+            meta = msg.get("meta", {})
+            cmd = meta.get("command", "")
+            exit_code = meta.get("exit_code", 0)
+            stdout = meta.get("stdout", "")
+            stderr = meta.get("stderr", "")
+            terminal_context = (
+                f"【命令执行结果】\n"
+                f"命令：{cmd}\n"
+                f"退出码：{exit_code}\n"
+                f"标准输出：\n{stdout}\n"
+                f"标准错误：\n{stderr}\n"
+                f"请分析以上结果，决定下一步操作。"
+            )
+            messages.append({"role": "system", "content": terminal_context})
     return messages
 
 
