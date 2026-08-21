@@ -1,0 +1,13 @@
+node_modules/
+*.wav
+tts-test.mp3
+test-huihui.wav
+check-durations.cjs
+generate-tts.js
+generate-tts.mjs
+generate-tts.ps1
+generate-tts-ps.js
+split-tts.cjs
+split-tts.js
+test-tts.mjs
+test-ttsmaker.cjs

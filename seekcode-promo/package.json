@@ -7,5 +7,9 @@
     "check": "npx --yes hyperframes@0.8.6 check",
     "render": "npx --yes hyperframes@0.8.6 render",
     "publish": "npx --yes hyperframes@0.8.6 publish"
+  },
+  "dependencies": {
+    "msedge-tts": "^2.0.7",
+    "ttsmaker": "^1.0.3"
   }
 }
