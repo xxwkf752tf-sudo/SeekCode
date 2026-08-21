@@ -309,7 +309,7 @@
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="56"
+      data-duration="60"
       data-width="1920"
       data-height="1080"
       data-layout-allow-overlap
@@ -780,17 +780,17 @@
       tl.from('.s6-cta', { scale: 0.85, opacity: 0, duration: 0.2, ease: 'back.out(1.8)' }, 50.0);
       tl.from('.s6-url', { opacity: 0, duration: 0.18, ease: 'power2.out' }, 50.2);
       playSFX('sfx-success', 52.0);
-      // Final hold
-      tl.to({}, { duration: 3.5});
+      // Final hold (extended for TTS scene 6 = 7.44s)
+      tl.to({}, { duration: 5.0});
 
-      // -- Captions --
+      // -- Captions (Douyin口语化) --
       const CAPTIONS = [
-        { start: 0.3, end: 5.5,  text: 'SeekCode —— 让 AI 直接操作你的电脑，三秒出结果。' },
-        { start: 9.4, end: 15.0, text: '不用记命令，把任务说给 AI 听，它自己执行。' },
-        { start: 18.4, end: 26.0, text: '用大白话描述需求，AI 理解意图，一气呵成。' },
-        { start: 29.4, end: 37.0, text: '三级权限控制：对话、标准、完全访问。高危操作自动备份。' },
-        { start: 39.4, end: 47.0, text: '双模型智能切换：Flash 快速，Pro 深度推理。' },
-        { start: 49.4, end: 55.0, text: '本地安全存储，随时可中断。Star on GitHub，开始你的 AI 桌面助手之旅。' },
+        { start: 0.3, end: 6.5,  text: '你的电脑，让AI来操作！三秒钟出结果，就问你神不神奇？' },
+        { start: 9.2, end: 13.5, text: '别再背命令了，说人话就行，AI替你执行。' },
+        { start: 18.3, end: 23.5, text: '大白话就能用，AI秒懂你的意思，一气呵成给你搞定。' },
+        { start: 29.3, end: 34.5, text: '三级权限你自己定，高危操作还自动备份，不怕你后悔。' },
+        { start: 39.3, end: 45.5, text: '两个模式自动切换，简单的用Flash秒回，复杂的交给Pro深度思考。' },
+        { start: 49.3, end: 57.0, text: '密码存在本地，随时能停手。GitHub点个Star就能用，快去试试吧！' },
       ];
 
       const capEl = document.getElementById('caption-text');
