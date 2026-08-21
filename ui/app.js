@@ -165,7 +165,7 @@
   }
 
   /**
-   * 初始化后端连接：加载配置并创建默认会话，连接 SSE。
+   * 初始化后端连接：加载配置，复用最近的会话（没有才新建），连接 SSE。
    */
   async function initBackend() {
     try {
@@ -192,17 +192,32 @@
     }
 
     try {
-      const sessionRes = await fetch(`${backendBase}/api/sessions`, { method: "POST" });
-      if (sessionRes.ok) {
-        const data = await sessionRes.json();
-        state.sessionId = data.session.session_id;
-        connectEventSource();
-        loadSessionList();
-      } else {
-        showToast("error", "会话创建失败", "无法创建默认会话。");
+      const listRes = await fetch(`${backendBase}/api/sessions`);
+      let sessionId = null;
+      if (listRes.ok) {
+        const listData = await listRes.json();
+        const sessions = listData.sessions || [];
+        if (sessions.length > 0) {
+          sessionId = sessions[0].session_id;
+        }
       }
+
+      if (!sessionId) {
+        const createRes = await fetch(`${backendBase}/api/sessions`, { method: "POST" });
+        if (createRes.ok) {
+          const data = await createRes.json();
+          sessionId = data.session.session_id;
+        } else {
+          showToast("error", "会话创建失败", "无法创建默认会话。");
+          return;
+        }
+      }
+
+      state.sessionId = sessionId;
+      connectEventSource();
+      loadSessionList();
     } catch (err) {
-      showToast("error", "会话创建失败", err.message);
+      showToast("error", "会话初始化失败", err.message);
     }
   }
 
@@ -953,15 +968,19 @@
     elements.fullAccessModal.classList.add("hidden");
   }
 
-  function confirmFullAccess() {
+  async function confirmFullAccess() {
     if (state.pendingPermissionChange) {
       state.permission = state.pendingPermissionChange;
       updatePermissionUI();
-      updateBackendConfig({ permission: state.permission });
       state.pendingPermissionChange = null;
     }
     elements.fullAccessModal.classList.add("hidden");
-    showToast("warning", "完全访问模式已开启", "AI 获得最高权限，安全限制已启用。");
+    try {
+      await updateBackendConfig({ permission: state.permission });
+      showToast("warning", "完全访问模式已开启", "AI 获得最高权限，安全限制已启用。");
+    } catch (err) {
+      showToast("error", "保存失败", "权限模式保存失败，请重试。");
+    }
   }
 
   /**
