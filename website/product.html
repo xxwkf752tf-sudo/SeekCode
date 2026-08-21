@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SeekCode 产品介绍 - 自然语言驱动、双模型切换、三级权限控制、本地隐私优先的 AI 终端助手。">
+  <meta name="theme-color" content="#c96442">
+  <title>产品介绍 - SeekCode</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Lora:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+  <!-- ============ 导航栏 ============ -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="nav-brand">
+        <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
+          <path d="M16 2L4 9v14l12 7 12-7V9L16 2z" fill="currentColor" opacity="0.12"/>
+          <path d="M16 6L8 11v10l8 5 8-5V11l-8-5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M16 16l-6-3.5v7L16 22l6-3.5v-7L16 16z" fill="currentColor" opacity="0.9"/>
+        </svg>
+        SeekCode
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">首页</a>
+        <a href="product.html" class="nav-link">产品</a>
+        <a href="about.html" class="nav-link">关于</a>
+        <a href="contact.html" class="nav-link">联系</a>
+      </div>
+      <div class="nav-actions">
+        <button class="theme-toggle" aria-label="切换主题">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <a href="SeekCode.exe" download class="btn btn-primary btn-sm">免费下载</a>
+        <button class="nav-toggle" aria-label="菜单"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============ 页面头部 ============ -->
+  <section class="page-header">
+    <div class="container">
+      <h1 data-animate>功能强大，简单易用</h1>
+      <p data-animate>从自然语言理解到命令执行、从权限控制到记忆管理，SeekCode 的每个功能都经过精心设计，让你安全、高效地完成电脑任务。</p>
+    </div>
+  </section>
+
+  <!-- ============ 核心价值 ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <span class="section-label">核心能力</span>
+        <h2>四大核心价值</h2>
+        <p>SeekCode 不仅仅是一个命令行工具，它是一个理解你意图、自主决策、安全执行的 AI 伙伴。</p>
+      </div>
+
+      <div class="value-grid">
+        <div class="value-card" data-animate>
+          <div class="value-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h3>理解意图</h3>
+          <p>不是关键词匹配，而是真正的语义理解。描述模糊也没关系，AI 会追问澄清。</p>
+        </div>
+        <div class="value-card" data-animate>
+          <div class="value-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <h3>自主执行</h3>
+          <p>AI 自己拆解步骤、生成命令、执行、检查结果、修正错误，循环直到完成。</p>
+        </div>
+        <div class="value-card" data-animate>
+          <div class="value-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>安全可控</h3>
+          <p>三级权限模式，危险操作必须确认，删除前自动备份。你始终拥有最终决定权。</p>
+        </div>
+        <div class="value-card" data-animate>
+          <div class="value-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <h3>隐私优先</h3>
+          <p>API Key 本地 DPAPI 加密，命令在你机器上执行，数据不经过任何第三方服务器。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 详细功能说明 ============ -->
+  <section class="section bg-surface" id="details">
+    <div class="container">
+
+      <!-- 功能 1: 自然语言驱动 -->
+      <div class="alt-section">
+        <div class="alt-text" data-animate="left">
+          <h3>自然语言驱动任务</h3>
+          <p>不需要记忆复杂的命令行语法，不需要查阅文档。只需用日常语言描述你想做的事，SeekCode 就能理解你的意图并自动执行。</p>
+          <ul>
+            <li>支持中英文混合输入，大白话也能理解</li>
+            <li>自动拆解多步骤任务为可执行命令序列</li>
+            <li>遇到模糊描述会主动追问澄清</li>
+            <li>支持附带说明文档作为任务上下文</li>
+          </ul>
+        </div>
+        <div data-animate="right">
+          <div class="terminal-demo">
+            <div class="terminal-bar">
+              <span class="terminal-dot red"></span>
+              <span class="terminal-dot yellow"></span>
+              <span class="terminal-dot green"></span>
+              <span class="terminal-title">SeekCode</span>
+            </div>
+            <div class="terminal-body">
+              <div><span class="prompt">seekcode&gt;</span> <span class="cmd">帮我把桌面所有PNG压缩到80%并放到D:\backup</span></div>
+              <div style="margin-top:8px"><span class="ai">[AI] 正在分析任务...</span></div>
+              <div><span class="ai">[AI] 步骤1: 搜索桌面所有 .png 文件</span></div>
+              <div><span class="ai">[AI] 步骤2: 创建 D:\backup 目录</span></div>
+              <div><span class="ai">[AI] 步骤3: 逐个压缩并复制</span></div>
+              <div style="margin-top:8px"><span class="output">Found 23 PNG files</span></div>
+              <div><span class="output">Compressing: <span class="success">23/23 done</span></span></div>
+              <div style="margin-top:8px"><span class="ai">[AI] 全部完成！23个文件已保存到 D:\backup</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 功能 2: 双模型切换 -->
+      <div class="alt-section reverse" id="models">
+        <div class="alt-text" data-animate="right">
+          <h3>双模型自动切换</h3>
+          <p>集成 DeepSeek V4 Pro 与 V4 Flash 两个模型。自动模式会先用 Flash 判断任务复杂度，再决定使用哪个模型执行，兼顾速度与质量。</p>
+          <ul>
+            <li>V4 Flash：快速经济，适合简单文件操作和日常任务</li>
+            <li>V4 Pro：强能力，适合复杂代码逻辑和多步骤任务</li>
+            <li>自动模式：先判定再执行，Token 消耗最优</li>
+            <li>手动模式：你也可以直接指定使用哪个模型</li>
+          </ul>
+        </div>
+        <div data-animate="left">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>特性</th>
+                <th>V4 Flash</th>
+                <th>V4 Pro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>定位</td>
+                <td>快速经济</td>
+                <td>强能力</td>
+              </tr>
+              <tr>
+                <td>适合任务</td>
+                <td>文件操作、简单命令</td>
+                <td>复杂代码、多步骤逻辑</td>
+              </tr>
+              <tr>
+                <td>响应速度</td>
+                <td>极快</td>
+                <td>较快</td>
+              </tr>
+              <tr>
+                <td>Token 成本</td>
+                <td>低</td>
+                <td>较高</td>
+              </tr>
+              <tr>
+                <td>自动模式</td>
+                <td colspan="2" style="text-align:center">先 Flash 判定，再按复杂度选择</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 功能 3: 权限控制 -->
+      <div class="alt-section" id="security">
+        <div class="alt-text" data-animate="left">
+          <h3>三级权限控制</h3>
+          <p>安全是 SeekCode 的核心设计原则。三种权限模式让你在不同场景下灵活控制 AI 的执行范围，危险操作永远不会偷偷执行。</p>
+          <ul>
+            <li>对话模式：纯聊天，不执行任何命令</li>
+            <li>标准模式：可执行命令，高危操作需二次确认</li>
+            <li>完全访问模式：自动执行，但删除前压缩备份，单次上限 1000 文件</li>
+            <li>所有操作写入审计日志，可追溯</li>
+          </ul>
+        </div>
+        <div data-animate="right">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>模式</th>
+                <th>执行命令</th>
+                <th>高危操作</th>
+                <th>删除保护</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>对话模式</td>
+                <td style="color:var(--error)">禁止</td>
+                <td style="color:var(--error)">禁止</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>标准模式</td>
+                <td style="color:var(--success)">允许</td>
+                <td style="color:var(--warning)">需确认</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>完全访问</td>
+                <td style="color:var(--success)">允许</td>
+                <td style="color:var(--success)">自动</td>
+                <td style="color:var(--success)">压缩备份</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 功能 4: 记忆管理 -->
+      <div class="alt-section reverse">
+        <div class="alt-text" data-animate="right">
+          <h3>对话记忆与上下文管理</h3>
+          <p>SeekCode 内置记忆系统，自动保存任务的关键信息。即使中断后恢复，AI 也能记得之前的进度和上下文。</p>
+          <ul>
+            <li>自动记录任务上下文、关键变量、中间结果</li>
+            <li>每次请求自动附带记忆，AI 拥有完整信息</li>
+            <li>支持新建、加载、导出历史会话</li>
+            <li>长任务不怕中断，随时恢复继续</li>
+          </ul>
+        </div>
+        <div data-animate="left">
+          <div class="terminal-demo">
+            <div class="terminal-bar">
+              <span class="terminal-dot red"></span>
+              <span class="terminal-dot yellow"></span>
+              <span class="terminal-dot green"></span>
+              <span class="terminal-title">memory.json</span>
+            </div>
+            <div class="terminal-body">
+              <div><span style="color:#888">{</span></div>
+              <div><span style="color:#6b9bd1">"version"</span>: <span style="color:#27c93f">1</span>,</div>
+              <div><span style="color:#6b9bd1">"session_id"</span>: <span style="color:#e8a838">"a3f9-2c1b"</span>,</div>
+              <div><span style="color:#6b9bd1">"facts"</span>: {</div>
+              <div style="padding-left:16px"><span style="color:#6b9bd1">"project_path"</span>: <span style="color:#e8a838">"C:/dev/app"</span>,</div>
+              <div style="padding-left:16px"><span style="color:#6b9bd1">"last_status"</span>: <span style="color:#e8a838">"success"</span>,</div>
+              <div style="padding-left:16px"><span style="color:#6b9bd1">"files_processed"</span>: <span style="color:#27c93f">23</span></div>
+              <div><span style="color:#888">},</span></div>
+              <div><span style="color:#6b9bd1">"preferences"</span>: {</div>
+              <div style="padding-left:16px"><span style="color:#6b9bd1">"timeout"</span>: <span style="color:#27c93f">60</span></div>
+              <div><span style="color:#888">}</span></div>
+              <div><span style="color:#888">}</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ 安全特性 ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header" data-animate>
+        <span class="section-label">安全设计</span>
+        <h2>多层安全保护</h2>
+        <p>从密钥存储到命令执行，每一层都有安全机制保驾护航。</p>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-card" data-animate>
+          <div class="feature-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <h3>DPAPI 加密存储</h3>
+          <p>API Key 使用 Windows DPAPI 加密，绑定当前用户账户，即使配置文件被复制也无法在其他机器上解密。</p>
+        </div>
+        <div class="feature-card" data-animate>
+          <div class="feature-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <h3>危险命令识别</h3>
+          <p>内置危险命令识别引擎，对删除、格式化、注册表修改等高危操作自动拦截并要求二次确认。</p>
+        </div>
+        <div class="feature-card" data-animate>
+          <div class="feature-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8v13H3V8"/><path d="M1 3h22v5H1z"/><path d="M10 12h4"/></svg>
+          </div>
+          <h3>删除前自动备份</h3>
+          <p>完全访问模式下，删除类操作会先将文件压缩备份到临时目录，后续版本支持回收站还原。</p>
+        </div>
+        <div class="feature-card" data-animate>
+          <div class="feature-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3>执行超时保护</h3>
+          <p>单条命令默认 60 秒超时，可自定义配置。遇到死循环或长时间运行的任务，随时点击停止按钮中断。</p>
+        </div>
+        <div class="feature-card" data-animate>
+          <div class="feature-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <h3>审计日志</h3>
+          <p>所有命令执行记录写入审计日志，包括时间、命令内容、执行结果，方便事后追溯和排查。</p>
+        </div>
+        <div class="feature-card" data-animate>
+          <div class="feature-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c2.39 0 4.68.94 6.36 2.64"/></svg>
+          </div>
+          <h3>数量上限保护</h3>
+          <p>单次删除操作最多处理 1000 个文件，防止误操作导致大规模数据丢失。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-box" data-animate="scale">
+        <h2>想了解更多技术细节？</h2>
+        <p>查看完整文档，或直接下载体验。</p>
+        <div class="hero-actions">
+          <a href="contact.html" class="btn btn-primary btn-lg">查看文档</a>
+          <a href="SeekCode.exe" download class="btn btn-secondary btn-lg">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            下载体验
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 页脚 ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-brand">
+            <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
+              <path d="M16 2L4 9v14l12 7 12-7V9L16 2z" fill="currentColor" opacity="0.12"/>
+              <path d="M16 6L8 11v10l8 5 8-5V11l-8-5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M16 16l-6-3.5v7L16 22l6-3.5v-7L16 16z" fill="currentColor" opacity="0.9"/>
+            </svg>
+            SeekCode
+          </a>
+          <p>用自然语言指挥你的电脑。基于 DeepSeek 大模型的 Windows 桌面 AI 终端助手。</p>
+        </div>
+        <div class="footer-col">
+          <h4>产品</h4>
+          <ul>
+            <li><a href="product.html">功能介绍</a></li>
+            <li><a href="product.html#security">安全机制</a></li>
+            <li><a href="product.html#models">模型对比</a></li>
+            <li><a href="#">更新日志</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>资源</h4>
+          <ul>
+            <li><a href="#">使用文档</a></li>
+            <li><a href="#">常见问题</a></li>
+            <li><a href="about.html">关于我们</a></li>
+            <li><a href="contact.html">联系我们</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>关注</h4>
+          <ul>
+            <li><a href="https://github.com/xxwkf752tf-sudo/SeekCode" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="#">微信公众号</a></li>
+            <li><a href="#">知乎专栏</a></li>
+            <li><a href="#">RSS 订阅</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 SeekCode. 基于 MIT 协议开源。</span>
+        <div class="footer-social">
+          <a href="https://github.com/xxwkf752tf-sudo/SeekCode" target="_blank" rel="noopener" aria-label="GitHub"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+          <a href="#" aria-label="微信"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.913 2.532 3.252 4.394 6.095 4.394.826 0 1.622-.12 2.361-.336a.722.722 0 01.598.082l1.584.926a.272.272 0 00.14.045c.134 0 .24-.111.24-.247 0-.06-.024-.12-.04-.177l-.326-1.232a.497.497 0 01-.02-.156.49.49 0 01.201-.395C23.024 19.205 24 17.425 24 15.434c0-3.282-3.04-6.295-7.062-6.576zm-2.844 3.375c.535 0 .969.44.969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.969-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.969-.982z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ 客服悬浮组件 ============ -->
+  <div class="cs-overlay" id="csOverlay"></div>
+  <button class="cs-fab" id="csFab" aria-label="客服支持">
+    <span class="cs-fab-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-7h3zM3 19a2 2 0 0 0 2 2h1v-7H3z"/></svg>
+    </span>
+    <span class="cs-fab-online"></span>
+    <span class="cs-fab-badge hidden" id="csFabBadge">1</span>
+  </button>
+
+  <div class="cs-window" id="csWindow" role="dialog" aria-label="客服会话">
+    <div class="cs-header">
+      <div class="cs-header-avatar">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-7h3zM3 19a2 2 0 0 0 2 2h1v-7H3z"/></svg>
+      </div>
+      <div class="cs-header-info">
+        <strong>SeekCode 客服</strong>
+        <span>在线 · 平均 2 分钟回复</span>
+      </div>
+      <button class="cs-close" id="csClose" aria-label="关闭">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="cs-body">
+      <div class="cs-welcome">
+        <strong>你好！</strong> 我是 SeekCode 客服助手。有什么可以帮你的吗？可以选择下方常见问题，或直接留言给我们。
+      </div>
+      <div>
+        <p class="cs-section-label">常见问题</p>
+        <div class="cs-faq-list">
+          <div class="cs-faq-item" role="button" tabindex="0">
+            <span class="cs-faq-item-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+            <span class="cs-faq-item-text">SeekCode 是免费的吗？</span>
+            <span class="cs-faq-item-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+            <div class="cs-faq-answer"><p>SeekCode 完全免费且开源（MIT 协议）。使用时需自备 DeepSeek API Key，调用费用由 DeepSeek 按量收取。</p></div>
+          </div>
+          <div class="cs-faq-item" role="button" tabindex="0">
+            <span class="cs-faq-item-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+            <span class="cs-faq-item-text">我的 API Key 安全吗？</span>
+            <span class="cs-faq-item-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+            <div class="cs-faq-answer"><p>API Key 使用 Windows DPAPI 加密存储在本地，绑定当前用户账户，不会上传到任何第三方服务器。</p></div>
+          </div>
+          <div class="cs-faq-item" role="button" tabindex="0">
+            <span class="cs-faq-item-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+            <span class="cs-faq-item-text">支持 macOS 或 Linux 吗？</span>
+            <span class="cs-faq-item-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+            <div class="cs-faq-answer"><p>目前仅支持 Windows 10/11。后续版本计划支持 macOS 和 Linux，敬请期待。</p></div>
+          </div>
+          <a class="cs-faq-item" href="contact.html">
+            <span class="cs-faq-item-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+            <span class="cs-faq-item-text">查看全部常见问题</span>
+            <span class="cs-faq-item-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="cs-input-area">
+      <div class="cs-sent-notice hidden" id="csSentNotice">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        留言已发送，客服会尽快回复你
+      </div>
+      <div class="cs-input-wrap">
+        <textarea class="cs-input" id="csInput" placeholder="输入你的问题..." rows="1"></textarea>
+        <button class="cs-send-btn" id="csSendBtn" aria-label="发送">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+$filePath = "c:\Users\吴泓铮\Desktop\SeekCode\seekcode-promo\narration.wav"
+$sr = 24000; $dur = 58; $ch = 1; $bps = 16
+$byteRate = $sr * $ch * ($bps / 8)
+$blockAlign = $ch * ($bps / 8)
+$dataSize = $sr * $dur * $blockAlign
+$buf = [byte[]]::new(44 + $dataSize)
+$w = [System.IO.BinaryWriter]::new($buf)
+$w.Write([System.Text.Encoding]::ASCII.GetBytes("RIFF"))
+$w.Write([BitConverter]::GetBytes(36 + $dataSize))
+$w.Write([System.Text.Encoding]::ASCII.GetBytes("WAVE"))
+$w.Write([System.Text.Encoding]::ASCII.GetBytes("fmt "))
+$w.Write([BitConverter]::GetBytes(16))
+$w.Write([BitConverter]::GetBytes([short]1))
+$w.Write([BitConverter]::GetBytes([short]$ch))
+$w.Write([BitConverter]::GetBytes($sr))
+$w.Write([BitConverter]::GetBytes($byteRate))
+$w.Write([BitConverter]::GetBytes([short]$blockAlign))
+$w.Write([BitConverter]::GetBytes([short]$bps))
+$w.Write([System.Text.Encoding]::ASCII.GetBytes("data"))
+$w.Write([BitConverter]::GetBytes($dataSize))
+$silence = [byte[]]::new($dataSize)
+$silence.CopyTo($buf, 44)
+$w.Close()
+[System.IO.File]::WriteAllBytes($filePath, $buf)
+Write-Host "Created silent WAV: $([System.IO.File]::ReadAllBytes($filePath).Length) bytes"

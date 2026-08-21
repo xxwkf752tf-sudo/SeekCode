@@ -1,0 +1,13 @@
+# 本地 Agnes API Key 存放文件（不要提交到仓库）
+.agnes_key
+.env
+.venv
+
+# Python 编译产物
+__pycache__/
+*.pyc
+*.pyo
+
+# 浏览器测试残留（如果你自己用 cs_browser_test.js 验证）
+cs_ai_reply.png
+cs_browser_test.js

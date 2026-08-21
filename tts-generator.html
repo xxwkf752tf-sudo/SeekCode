@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>SeekCode TTS 配音生成</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', sans-serif; padding: 40px; background: #0a0a0a; color: #f0f0f0; }
+  h2 { color: #39FF14; margin-bottom: 12px; }
+  p { color: #888; margin-bottom: 24px; }
+  button {
+    padding: 14px 32px; font-size: 18px; background: #39FF14; color: #0a0a0a;
+    border: none; border-radius: 8px; cursor: pointer; font-weight: bold;
+  }
+  button:hover { opacity: 0.85; }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+  #status { margin-top: 20px; font-size: 16px; color: #aaa; min-height: 24px; }
+  #output { margin-top: 20px; }
+  #output a { color: #39FF14; font-size: 16px; }
+  #output audio { margin-top: 12px; width: 100%; max-width: 500px; }
+  .tip { background: #141414; border: 1px solid #2a2a2a; border-radius: 8px;
+        padding: 16px; margin-top: 24px; font-size: 14px; color: #888; line-height: 1.6; }
+  .tip code { color: #39FF14; background: #1a1a1a; padding: 2px 6px; border-radius: 4px; }
+</style>
+</head>
+<body>
+<h2>SeekCode 宣传片配音生成器</h2>
+<p>使用浏览器内置语音合成生成中文配音，点击开始，等待完成后下载音频。</p>
+<button id="btn" onclick="startTTS()">开始生成配音</button>
+<div id="status"></div>
+<div id="output"></div>
+<div class="tip">
+  <strong>使用方法：</strong><br>
+  1. 点击"开始生成配音"，等待生成完成<br>
+  2. 下载生成的音频文件（webm 格式）<br>
+  3. 将文件重命名为 <code>narration.wav</code> 并放入 <code>seekcode-promo/</code> 目录<br>
+  4. 重新运行 <code>npm run render</code> 即可包含配音<br>
+  <br>
+  <strong>提示：</strong>需要允许浏览器使用语音合成。如需中文配音，请确保系统安装了中文语音包。
+</div>
+
+<script>
+const SCRIPT = [
+  "SeekCode —— 一个让 AI 通过自然语言帮你操作电脑的 Windows 桌面助手。",
+  "你不需要记住命令。把任务说给 AI 听，它自己拆解步骤、调用终端、完成操作。",
+  "用大白话描述需求，AI 理解意图，自主规划并执行。",
+  "三级权限控制：对话模式、标准模式、完全访问模式。高危操作自动备份，随时可中断。",
+  "双模型自动切换：Flash 处理简单任务，Pro 应对复杂工程。智能判断，快人一步。",
+  "API Key 本地加密存储，所有命令执行都有超时保护。你的数据，始终在你手中。",
+  "SeekCode —— 打开 GitHub，星标这个仓库，开始你的 AI 桌面助手之旅。",
+];
+
+async function startTTS() {
+  const btn = document.getElementById('btn');
+  const status = document.getElementById('status');
+  btn.disabled = true;
+
+  const voices = await new Promise(resolve => {
+    if (speechSynthesis.getVoices().length > 0) resolve(speechSynthesis.getVoices());
+    speechSynthesis.onvoiceschanged = () => resolve(speechSynthesis.getVoices());
+  });
+
+  const zhVoice = voices.find(v => v.lang.startsWith('zh')) || voices[0];
+  status.textContent = `使用语音: ${zhVoice.name}`;
+
+  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  const dest = audioCtx.createMediaStreamDestination();
+
+  // Create a MediaRecorder that captures the audio context output
+  // We need to route speech synthesis audio through the dest
+  const recorder = new MediaRecorder(dest.stream, { mimeType: 'audio/webm;codecs=opus' });
+  const chunks = [];
+  recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };
+
+  recorder.start();
+
+  for (let i = 0; i < SCRIPT.length; i++) {
+    status.textContent = `正在生成第 ${i + 1}/${SCRIPT.length} 段...`;
+    const utterance = new SpeechSynthesisUtterance(SCRIPT[i]);
+    utterance.voice = zhVoice;
+    utterance.lang = zhVoice.lang.startsWith('zh') ? 'zh-CN' : 'zh-TW';
+    utterance.rate = 0.95;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+
+    speechSynthesis.speak(utterance);
+    await new Promise(r => {
+      utterance.onend = r;
+      utterance.onerror = r;
+    });
+    // Small gap between segments
+    await new Promise(r => setTimeout(r, 200));
+  }
+
+  status.textContent = '正在合并音频...';
+
+  // Stop recording after a short delay to capture trailing audio
+  await new Promise(r => setTimeout(r, 500));
+  recorder.stop();
+
+  return new Promise(resolve => {
+    recorder.onstop = () => {
+      const blob = new Blob(chunks, { type: 'audio/webm' });
+      const url = URL.createObjectURL(blob);
+      document.getElementById('output').innerHTML = `
+        <audio controls src="${url}"></audio><br>
+        <a href="${url}" download="narration.webm">⬇ 下载 narration.webm</a>
+      `;
+      status.textContent = '完成！请下载音频文件。';
+      resolve();
+    };
+  });
+}
+</script>
+</body>
+</html>
