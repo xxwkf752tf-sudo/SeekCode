@@ -4,18 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1920, height=1080" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-      <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
-      <style>
-        @font-face { font-family: "Fira Code"; font-style: normal; font-weight: 400; src: local("Fira Code"), local("FiraCode-Regular"); }
-        @font-face { font-family: "Fira Code"; font-style: normal; font-weight: 700; src: local("Fira Code Bold"), local("FiraCode-Bold"); }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Fira Code"; font-style: normal; font-weight: 400; src: local("Fira Code"), local("FiraCode-Regular"); }
+      @font-face { font-family: "Fira Code"; font-style: normal; font-weight: 700; src: local("Fira Code Bold"), local("FiraCode-Bold"); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
       html, body {
-        margin: 0;
-        width: 1920px;
-        height: 1080px;
-        overflow: hidden;
+        margin: 0; width: 1920px; height: 1080px; overflow: hidden;
         background: #0a0a0a;
       }
       body {
@@ -23,16 +20,12 @@
         color: #f0f0f0;
         -webkit-font-smoothing: antialiased;
       }
-      .mono {
-        font-family: "JetBrains Mono", "Fira Code", monospace;
-      }
+      .mono { font-family: "JetBrains Mono", "Fira Code", monospace; }
 
       .scene {
-        position: absolute;
-        top: 0; left: 0;
+        position: absolute; top: 0; left: 0;
         width: 1920px; height: 1080px;
-        overflow: hidden;
-        background: #0a0a0a;
+        overflow: hidden; background: #0a0a0a;
         opacity: 0;
       }
       #scene1 { z-index: 1; }
@@ -43,18 +36,6 @@
       #scene6 { z-index: 6; }
       #scene7 { z-index: 7; }
 
-      .bg-glow {
-        position: absolute;
-        width: 1920px; height: 1080px;
-        pointer-events: none;
-        z-index: 0;
-      }
-      .bg-glow-1 {
-        background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(57,255,20,0.06) 0%, transparent 70%);
-      }
-      .bg-glow-2 {
-        background: radial-gradient(ellipse 50% 40% at 20% 70%, rgba(57,255,20,0.04) 0%, transparent 60%);
-      }
       .bg-grid {
         position: absolute;
         width: 1920px; height: 1080px;
@@ -62,122 +43,82 @@
           linear-gradient(rgba(57,255,20,0.03) 1px, transparent 1px),
           linear-gradient(90deg, rgba(57,255,20,0.03) 1px, transparent 1px);
         background-size: 80px 80px;
-        pointer-events: none;
-        z-index: 0;
+        pointer-events: none; z-index: 0;
       }
       .bg-ghost {
         position: absolute;
-        font-size: 280px;
-        font-weight: 900;
-        color: rgba(57,255,20,0.15);
-        -webkit-text-fill-color: rgba(57,255,20,0.15);
+        font-size: 280px; font-weight: 900;
+        color: rgba(57,255,20,0.12);
         letter-spacing: -0.04em;
-        pointer-events: none;
-        z-index: 0;
-        white-space: nowrap;
-        line-height: 1;
+        pointer-events: none; z-index: 0;
+        white-space: nowrap; line-height: 1;
       }
 
       .content {
-        position: relative;
-        z-index: 1;
+        position: relative; z-index: 1;
         width: 1920px; height: 1080px;
         padding: 100px 140px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+        display: flex; flex-direction: column; justify-content: center;
       }
 
-      /* ── Scene 1: Title ── */
+      /* -- Scene 1: Title (0-2.5s) -- */
       .s1-tag {
-        font-size: 22px;
-        letter-spacing: 0.25em;
-        text-transform: uppercase;
-        color: #39FF14;
-        font-family: "JetBrains Mono", monospace;
-        margin-bottom: 24px;
+        font-size: 22px; letter-spacing: 0.25em;
+        text-transform: uppercase; color: #39FF14;
+        font-family: "JetBrains Mono", monospace; margin-bottom: 24px;
       }
       .s1-title {
-        font-size: 180px;
-        font-weight: 900;
-        letter-spacing: -0.04em;
-        line-height: 1;
-        margin-bottom: 28px;
+        font-size: 180px; font-weight: 900;
+        letter-spacing: -0.04em; line-height: 1; margin-bottom: 28px;
       }
       .s1-title span { color: #39FF14; }
       .s1-sub {
-        font-size: 38px;
-        font-weight: 300;
-        color: #8a8a8a;
-        letter-spacing: 0.02em;
-        margin-bottom: 70px;
+        font-size: 38px; font-weight: 300; color: #8a8a8a;
+        letter-spacing: 0.02em; margin-bottom: 70px;
       }
       .s1-stats { display: flex; gap: 80px; margin-top: 20px; }
       .s1-stat-val {
-        font-size: 88px;
-        font-weight: 900;
-        color: #f0f0f0;
-        font-variant-numeric: tabular-nums;
-        letter-spacing: -0.02em;
-        line-height: 1;
+        font-size: 88px; font-weight: 900;
+        color: #f0f0f0; font-variant-numeric: tabular-nums;
+        letter-spacing: -0.02em; line-height: 1;
       }
       .s1-stat-val.accent { color: #39FF14; }
       .s1-stat-label {
-        font-size: 20px;
-        color: #666;
+        font-size: 20px; color: #666;
         font-family: "JetBrains Mono", monospace;
-        margin-top: 8px;
-        letter-spacing: 0.05em;
+        margin-top: 8px; letter-spacing: 0.05em;
       }
       .s1-line {
         width: 100%; height: 1px;
         background: linear-gradient(90deg, #39FF14, transparent);
         margin-top: 60px;
-        transform-origin: left;
       }
 
-      /* ── Scene 2: Problem ── */
+      /* -- Scene 2: Problem (2.5-5s) -- */
       .s2-label {
-        font-size: 20px;
-        font-family: "JetBrains Mono", monospace;
-        color: #39FF14;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        margin-bottom: 40px;
+        font-size: 20px; font-family: "JetBrains Mono", monospace;
+        color: #39FF14; letter-spacing: 0.15em;
+        text-transform: uppercase; margin-bottom: 40px;
       }
       .s2-headline {
-        font-size: 100px;
-        font-weight: 900;
-        letter-spacing: -0.03em;
-        line-height: 1.05;
-        margin-bottom: 48px;
+        font-size: 100px; font-weight: 900;
+        letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 48px;
       }
       .s2-headline .green { color: #39FF14; }
       .s2-desc {
-        font-size: 32px;
-        font-weight: 300;
-        color: #999;
-        line-height: 1.5;
-        max-width: 900px;
+        font-size: 32px; font-weight: 300; color: #999;
+        line-height: 1.5; max-width: 900px;
       }
       .s2-terminal {
-        position: absolute;
-        right: 140px;
-        top: 50%;
+        position: absolute; right: 140px; top: 50%;
         transform: translateY(-50%);
-        width: 620px;
-        background: #111;
-        border: 1px solid #2a2a2a;
-        border-radius: 12px;
-        overflow: hidden;
+        width: 620px; background: #111;
+        border: 1px solid #2a2a2a; border-radius: 12px; overflow: hidden;
       }
       .s2-term-bar {
-        height: 36px;
-        background: #1a1a1a;
-        display: flex;
-        align-items: center;
-        padding: 0 14px;
-        gap: 6px;
+        height: 36px; background: #1a1a1a;
+        display: flex; align-items: center;
+        padding: 0 14px; gap: 6px;
       }
       .s2-dot { width: 10px; height: 10px; border-radius: 50%; }
       .s2-dot-r { background: #ff5f57; }
@@ -186,117 +127,74 @@
       .s2-term-body {
         padding: 20px 24px;
         font-family: "JetBrains Mono", monospace;
-        font-size: 20px;
-        line-height: 1.8;
-        color: #ccc;
+        font-size: 20px; line-height: 1.8; color: #ccc;
       }
       .s2-term-body .prompt { color: #39FF14; }
       .s2-term-body .cmd { color: #f0f0f0; }
       .s2-term-body .ok { color: #39FF14; }
-      .s2-term-body .err { color: #ff6b6b; }
       .s2-term-body .num { color: #f78c00; }
       .s2-term-body .str { color: #39FF14; }
 
-      /* ── Scene 3: Natural Language ── */
+      /* -- Scene 3: Natural Language (5-8s) -- */
       .s3-headline {
-        font-size: 92px;
-        font-weight: 900;
-        letter-spacing: -0.03em;
-        line-height: 1.05;
-        margin-bottom: 32px;
+        font-size: 92px; font-weight: 900;
+        letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 32px;
       }
       .s3-headline .green { color: #39FF14; }
       .s3-sub {
-        font-size: 30px;
-        font-weight: 300;
-        color: #888;
-        max-width: 700px;
-        line-height: 1.5;
+        font-size: 30px; font-weight: 300; color: #888;
+        max-width: 700px; line-height: 1.5;
       }
       .s3-float {
-        position: absolute;
-        right: 100px;
-        top: 120px;
-        width: 580px;
+        position: absolute; right: 100px; top: 120px; width: 580px;
       }
       .s3-card {
-        background: #141414;
-        border: 1px solid #2a2a2a;
-        border-radius: 16px;
-        padding: 36px 40px;
-        margin-bottom: 20px;
+        background: #141414; border: 1px solid #2a2a2a;
+        border-radius: 16px; padding: 36px 40px; margin-bottom: 20px;
       }
       .s3-card-header {
         font-family: "JetBrains Mono", monospace;
-        font-size: 16px;
-        color: #39FF14;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        margin-bottom: 14px;
+        font-size: 16px; color: #39FF14;
+        letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px;
       }
-      .s3-card-body {
-        font-size: 26px;
-        color: #e0e0e0;
-        line-height: 1.5;
-      }
+      .s3-card-body { font-size: 26px; color: #e0e0e0; line-height: 1.5; }
       .s3-card-body .hl { color: #39FF14; font-weight: 700; }
 
-      /* ── Scene 4: Permissions ── */
+      /* -- Scene 4: Permissions (8-12s) -- */
       .s4-label {
-        font-size: 20px;
-        font-family: "JetBrains Mono", monospace;
-        color: #39FF14;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        margin-bottom: 20px;
+        font-size: 20px; font-family: "JetBrains Mono", monospace;
+        color: #39FF14; letter-spacing: 0.15em;
+        text-transform: uppercase; margin-bottom: 20px;
       }
       .s4-headline {
-        font-size: 88px;
-        font-weight: 900;
-        letter-spacing: -0.03em;
-        line-height: 1.05;
-        margin-bottom: 30px;
+        font-size: 88px; font-weight: 900;
+        letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 30px;
       }
       .s4-headline .green { color: #39FF14; }
       .s4-perm-row {
-        display: flex;
-        align-items: center;
-        gap: 24px;
-        padding: 24px 32px;
-        background: #141414;
-        border: 1px solid #2a2a2a;
-        border-radius: 14px;
-        margin-bottom: 16px;
+        display: flex; align-items: center; gap: 24px;
+        padding: 24px 32px; background: #141414;
+        border: 1px solid #2a2a2a; border-radius: 14px; margin-bottom: 16px;
       }
       .s4-perm-badge {
         font-family: "JetBrains Mono", monospace;
-        font-size: 18px;
-        font-weight: 700;
-        padding: 8px 18px;
-        border-radius: 8px;
-        letter-spacing: 0.05em;
-        white-space: nowrap;
+        font-size: 18px; font-weight: 700;
+        padding: 8px 18px; border-radius: 8px;
+        letter-spacing: 0.05em; white-space: nowrap;
       }
       .badge-chat { background: #1a1a2e; color: #7b8cff; border: 1px solid #7b8cff33; }
       .badge-std { background: #1a2e1a; color: #39FF14; border: 1px solid #39FF1433; }
       .badge-full { background: #2e1a1a; color: #ff6b6b; border: 1px solid #ff6b6b33; }
       .s4-perm-desc { font-size: 22px; color: #999; }
       .s4-right {
-        position: absolute;
-        right: 120px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 520px;
+        position: absolute; right: 120px; top: 50%;
+        transform: translateY(-50%); width: 520px;
       }
       .s4-code-block {
-        background: #111;
-        border: 1px solid #2a2a2a;
-        border-radius: 14px;
-        padding: 28px 32px;
+        background: #111; border: 1px solid #2a2a2a;
+        border-radius: 14px; padding: 28px 32px;
         font-family: "JetBrains Mono", monospace;
-        font-size: 20px;
-        line-height: 1.9;
-        color: #ccc;
+        font-size: 20px; line-height: 1.9; color: #ccc;
       }
       .s4-code-block .kw { color: #c792ea; }
       .s4-code-block .str { color: #39FF14; }
@@ -304,14 +202,11 @@
       .s4-code-block .cm { color: #546e7a; }
       .s4-code-block .num { color: #f78c00; }
 
-      /* ── Scene 5: Dual Mode ── */
+      /* -- Scene 5: Dual Mode (12-15s) -- */
       .s5-grid { display: flex; gap: 48px; margin-top: 50px; }
       .s5-mode-card {
-        flex: 1;
-        background: #141414;
-        border: 1px solid #2a2a2a;
-        border-radius: 20px;
-        padding: 48px 44px;
+        flex: 1; background: #141414; border: 1px solid #2a2a2a;
+        border-radius: 20px; padding: 48px 44px;
       }
       .s5-mode-card.active {
         border-color: #39FF14;
@@ -321,177 +216,120 @@
       .s5-mode-name { font-size: 36px; font-weight: 800; margin-bottom: 14px; letter-spacing: -0.01em; }
       .s5-mode-desc { font-size: 22px; color: #888; line-height: 1.5; }
       .s5-vs {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        display: flex; align-items: center; justify-content: center;
         font-family: "JetBrains Mono", monospace;
-        font-size: 28px;
-        font-weight: 700;
-        color: #39FF14;
-        letter-spacing: 0.2em;
+        font-size: 28px; font-weight: 700;
+        color: #39FF14; letter-spacing: 0.2em;
       }
       .s5-headline {
-        font-size: 88px;
-        font-weight: 900;
-        letter-spacing: -0.03em;
-        line-height: 1.05;
-        margin-bottom: 20px;
+        font-size: 88px; font-weight: 900;
+        letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 20px;
       }
       .s5-headline .green { color: #39FF14; }
       .s5-sub { font-size: 30px; color: #888; font-weight: 300; max-width: 600px; }
 
-      /* ── Scene 6: Security ── */
+      /* -- Scene 6: Security (15-17.5s) -- */
       .s6-headline {
-        font-size: 92px;
-        font-weight: 900;
-        letter-spacing: -0.03em;
-        line-height: 1.05;
-        margin-bottom: 32px;
+        font-size: 92px; font-weight: 900;
+        letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 32px;
       }
       .s6-headline .green { color: #39FF14; }
       .s6-desc {
-        font-size: 28px;
-        color: #888;
-        line-height: 1.6;
-        max-width: 680px;
-        margin-bottom: 50px;
+        font-size: 28px; color: #888; line-height: 1.6;
+        max-width: 680px; margin-bottom: 50px;
       }
       .s6-features { display: flex; flex-direction: column; gap: 18px; }
       .s6-feat {
-        display: flex;
-        align-items: center;
-        gap: 18px;
-        font-size: 24px;
-        color: #ccc;
+        display: flex; align-items: center; gap: 18px;
+        font-size: 24px; color: #ccc;
       }
       .s6-feat-icon {
-        width: 40px; height: 40px;
-        background: #1a2e1a;
-        border: 1px solid #39FF1444;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 20px;
-        flex-shrink: 0;
+        width: 40px; height: 40px; background: #1a2e1a;
+        border: 1px solid #39FF1444; border-radius: 10px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 20px; flex-shrink: 0;
       }
       .s6-right {
-        position: absolute;
-        right: 140px;
-        top: 50%;
+        position: absolute; right: 140px; top: 50%;
         transform: translateY(-50%);
       }
       .s6-lock {
         width: 320px; height: 320px;
-        border: 3px solid #39FF14;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 140px;
-        position: relative;
+        border: 3px solid #39FF14; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 140px; position: relative;
       }
       .s6-lock::after {
-        content: '';
-        position: absolute;
+        content: ''; position: absolute;
         width: 380px; height: 380px;
         border: 1px solid rgba(57,255,20,0.2);
         border-radius: 50%;
-        animation: pulse-ring 2.5s ease-in-out infinite;
+        animation: pulse-ring 2s ease-in-out infinite;
       }
       @keyframes pulse-ring {
         0%, 100% { transform: scale(1); opacity: 0.3; }
         50% { transform: scale(1.08); opacity: 0.1; }
       }
 
-      /* ── Scene 7: CTA ── */
+      /* -- Scene 7: CTA (17.5-19s) -- */
       .s7-content { align-items: center; text-align: center; justify-content: center; }
       .s7-label {
-        font-size: 20px;
-        font-family: "JetBrains Mono", monospace;
-        color: #39FF14;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        margin-bottom: 36px;
+        font-size: 20px; font-family: "JetBrains Mono", monospace;
+        color: #39FF14; letter-spacing: 0.2em;
+        text-transform: uppercase; margin-bottom: 36px;
       }
       .s7-title {
-        font-size: 140px;
-        font-weight: 900;
-        letter-spacing: -0.04em;
-        line-height: 1;
-        margin-bottom: 30px;
+        font-size: 140px; font-weight: 900;
+        letter-spacing: -0.04em; line-height: 1; margin-bottom: 30px;
       }
       .s7-title .green { color: #39FF14; }
       .s7-url {
         font-family: "JetBrains Mono", monospace;
-        font-size: 36px;
-        color: #888;
-        margin-bottom: 50px;
+        font-size: 36px; color: #888; margin-bottom: 50px;
       }
       .s7-url span { color: #f0f0f0; }
       .s7-cta {
-        display: inline-flex;
-        align-items: center;
-        gap: 16px;
-        background: #39FF14;
-        color: #0a0a0a;
-        font-size: 26px;
-        font-weight: 800;
-        padding: 22px 52px;
-        border-radius: 60px;
+        display: inline-flex; align-items: center; gap: 16px;
+        background: #39FF14; color: #0a0a0a;
+        font-size: 26px; font-weight: 800;
+        padding: 22px 52px; border-radius: 60px;
         letter-spacing: 0.02em;
       }
       .s7-footer {
-        position: absolute;
-        bottom: 60px;
-        left: 140px;
-        right: 140px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        position: absolute; bottom: 60px;
+        left: 140px; right: 140px;
+        display: flex; justify-content: space-between; align-items: center;
         font-family: "JetBrains Mono", monospace;
-        font-size: 18px;
-        color: #444;
+        font-size: 18px; color: #444;
       }
       .s7-footer .dot { width: 8px; height: 8px; border-radius: 50%; background: #39FF14; display: inline-block; margin-right: 10px; }
 
-      /* ── Transition overlay ── */
+      /* -- Transition overlays (6 distinct types) -- */
       #transition-overlay {
-        position: fixed;
-        top: 0; left: 0;
+        position: fixed; top: 0; left: 0;
         width: 1920px; height: 1080px;
-        z-index: 100;
-        pointer-events: none;
-        display: flex;
+        z-index: 100; pointer-events: none; display: flex;
       }
-      .ts-block { flex: 1; background: #39FF14; }
+      .ts-green  { flex: 1; background: #39FF14; }
+      .ts-orange { flex: 1; background: #FF6B2F; }
+      .ts-blue   { flex: 1; background: #4A9EFF; }
+      .ts-cyan   { flex: 1; background: #00E5FF; }
+      .ts-purple { flex: 1; background: #B388FF; }
+      .ts-red    { flex: 1; background: #FF3D5A; }
 
-      /* ── Caption bar ── */
+      /* -- Caption bar -- */
       #caption-bar {
-        position: fixed;
-        bottom: 70px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 200;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
+        position: fixed; bottom: 70px; left: 50%;
+        transform: translateX(-50%); z-index: 200;
+        display: flex; flex-direction: column; align-items: center; gap: 8px;
         pointer-events: none;
       }
       #caption-text {
-        font-size: 32px;
-        font-weight: 500;
-        color: #f0f0f0;
-        background: rgba(10,10,10,0.85);
-        padding: 14px 36px;
-        border-radius: 12px;
-        border: 1px solid rgba(57,255,20,0.2);
-        max-width: 1400px;
-        text-align: center;
-        line-height: 1.4;
-        letter-spacing: 0.02em;
-        opacity: 0;
+        font-size: 32px; font-weight: 500; color: #f0f0f0;
+        background: rgba(10,10,10,0.85); padding: 14px 36px;
+        border-radius: 12px; border: 1px solid rgba(57,255,20,0.2);
+        max-width: 1400px; text-align: center; line-height: 1.4;
+        letter-spacing: 0.02em; opacity: 0;
       }
     </style>
   </head>
@@ -500,42 +338,63 @@
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="42"
+      data-duration="19"
       data-width="1920"
       data-height="1080"
       data-layout-allow-overlap
       data-layout-allow-occlusion
       data-layout-allow-overflow
     >
-    <audio id="narration" src="narration.wav" muted data-volume="0" data-start="0" data-duration="42"></audio>
+    <audio id="narration" src="narration-v2.wav" data-volume="1" data-start="0" data-duration="19"></audio>
 
     <div id="caption-bar">
       <div id="caption-text"></div>
     </div>
 
+    <!-- 6 transition groups: 15 blocks each = 90 total -->
     <div id="transition-overlay">
-      <div class="ts-block"></div><div class="ts-block"></div><div class="ts-block"></div>
-      <div class="ts-block"></div><div class="ts-block"></div><div class="ts-block"></div>
-      <div class="ts-block"></div><div class="ts-block"></div><div class="ts-block"></div>
-      <div class="ts-block"></div><div class="ts-block"></div><div class="ts-block"></div>
-      <div class="ts-block"></div><div class="ts-block"></div><div class="ts-block"></div>
-      <div class="ts-block"></div><div class="ts-block"></div><div class="ts-block"></div>
-      <div class="ts-block"></div><div class="ts-block"></div><div class="ts-block"></div>
-      <div class="ts-block"></div><div class="ts-block"></div><div class="ts-block"></div>
-      <div class="ts-block"></div><div class="ts-block"></div><div class="ts-block"></div>
-      <div class="ts-block"></div><div class="ts-block"></div><div class="ts-block"></div>
-      <div class="ts-block"></div><div class="ts-block"></div><div class="ts-block"></div>
-      <div class="ts-block"></div><div class="ts-block"></div><div class="ts-block"></div>
-      <div class="ts-block"></div><div class="ts-block"></div><div class="ts-block"></div>
-      <div class="ts-block"></div><div class="ts-block"></div><div class="ts-block"></div>
-      <div class="ts-block"></div><div class="ts-block"></div><div class="ts-block"></div>
+      <!-- T1: Green (15) -->
+      <div class="ts-green"></div><div class="ts-green"></div><div class="ts-green"></div>
+      <div class="ts-green"></div><div class="ts-green"></div><div class="ts-green"></div>
+      <div class="ts-green"></div><div class="ts-green"></div><div class="ts-green"></div>
+      <div class="ts-green"></div><div class="ts-green"></div><div class="ts-green"></div>
+      <div class="ts-green"></div><div class="ts-green"></div><div class="ts-green"></div>
+      <!-- T2: Orange (15) -->
+      <div class="ts-orange"></div><div class="ts-orange"></div><div class="ts-orange"></div>
+      <div class="ts-orange"></div><div class="ts-orange"></div><div class="ts-orange"></div>
+      <div class="ts-orange"></div><div class="ts-orange"></div><div class="ts-orange"></div>
+      <div class="ts-orange"></div><div class="ts-orange"></div><div class="ts-orange"></div>
+      <div class="ts-orange"></div><div class="ts-orange"></div><div class="ts-orange"></div>
+      <!-- T3: Blue (15) -->
+      <div class="ts-blue"></div><div class="ts-blue"></div><div class="ts-blue"></div>
+      <div class="ts-blue"></div><div class="ts-blue"></div><div class="ts-blue"></div>
+      <div class="ts-blue"></div><div class="ts-blue"></div><div class="ts-blue"></div>
+      <div class="ts-blue"></div><div class="ts-blue"></div><div class="ts-blue"></div>
+      <div class="ts-blue"></div><div class="ts-blue"></div><div class="ts-blue"></div>
+      <!-- T4: Cyan (15) -->
+      <div class="ts-cyan"></div><div class="ts-cyan"></div><div class="ts-cyan"></div>
+      <div class="ts-cyan"></div><div class="ts-cyan"></div><div class="ts-cyan"></div>
+      <div class="ts-cyan"></div><div class="ts-cyan"></div><div class="ts-cyan"></div>
+      <div class="ts-cyan"></div><div class="ts-cyan"></div><div class="ts-cyan"></div>
+      <div class="ts-cyan"></div><div class="ts-cyan"></div><div class="ts-cyan"></div>
+      <!-- T5: Purple (15) -->
+      <div class="ts-purple"></div><div class="ts-purple"></div><div class="ts-purple"></div>
+      <div class="ts-purple"></div><div class="ts-purple"></div><div class="ts-purple"></div>
+      <div class="ts-purple"></div><div class="ts-purple"></div><div class="ts-purple"></div>
+      <div class="ts-purple"></div><div class="ts-purple"></div><div class="ts-purple"></div>
+      <div class="ts-purple"></div><div class="ts-purple"></div><div class="ts-purple"></div>
+      <!-- T6: Red (15) -->
+      <div class="ts-red"></div><div class="ts-red"></div><div class="ts-red"></div>
+      <div class="ts-red"></div><div class="ts-red"></div><div class="ts-red"></div>
+      <div class="ts-red"></div><div class="ts-red"></div><div class="ts-red"></div>
+      <div class="ts-red"></div><div class="ts-red"></div><div class="ts-red"></div>
+      <div class="ts-red"></div><div class="ts-red"></div><div class="ts-red"></div>
     </div>
 
-      <!-- ═══ SCENE 1: Title (0–6s) ═══ -->
+      <!-- ===== SCENE 1: Title (0-2.5s) ===== -->
       <div id="scene1" class="scene">
         <div class="bg-grid"></div>
-        <div class="bg-glow bg-glow-1"></div>
-        <div class="bg-glow bg-glow-2"></div>
+        <div class="bg-glow" style="position:absolute;width:1920px;height:1080px;pointer-events:none;z-index:0;background:radial-gradient(ellipse 80% 60% at 70% 40%, rgba(57,255,20,0.06) 0%, transparent 70%)"></div>
         <div class="bg-ghost" style="top:50%;left:60%;transform:translate(-50%,-50%)">SEEK</div>
         <div class="content">
           <div class="s1-tag">Windows Desktop AI Assistant</div>
@@ -559,10 +418,10 @@
         </div>
       </div>
 
-      <!-- ═══ SCENE 2: Problem (6–12s) ═══ -->
+      <!-- ===== SCENE 2: Problem (2.5-5s) ===== -->
       <div id="scene2" class="scene">
         <div class="bg-grid"></div>
-        <div class="bg-glow" style="background:radial-gradient(ellipse 60% 50% at 80% 50%, rgba(57,255,20,0.05) 0%, transparent 70%)"></div>
+        <div class="bg-glow" style="position:absolute;width:1920px;height:1080px;pointer-events:none;z-index:0;background:radial-gradient(ellipse 60% 50% at 80% 50%, rgba(57,255,20,0.05) 0%, transparent 70%)"></div>
         <div class="content" style="flex-direction:row;align-items:center;gap:60px">
           <div style="flex:1">
             <div class="s2-label">// THE PROBLEM</div>
@@ -577,18 +436,18 @@
             </div>
             <div class="s2-term-body">
               <div><span class="prompt">$</span> <span class="cmd">compress all PNG on Desktop to 80% quality</span></div>
-              <div style="margin-top:8px"><span class="ok">✓</span> Found <span class="num">24</span> files</div>
-              <div><span class="ok">✓</span> Compressed & moved to <span class="str">D:\backup\images</span></div>
-              <div style="margin-top:8px"><span class="ok">✓</span> Done in 3.2s</div>
+              <div style="margin-top:8px"><span class="ok">&#10003;</span> Found <span class="num">24</span> files</div>
+              <div><span class="ok">&#10003;</span> Compressed & moved to <span class="str">D:\backup\images</span></div>
+              <div style="margin-top:8px"><span class="ok">&#10003;</span> Done in 3.2s</div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- ═══ SCENE 3: Natural Language (12–19s) ═══ -->
+      <!-- ===== SCENE 3: Natural Language (5-8s) ===== -->
       <div id="scene3" class="scene">
         <div class="bg-grid"></div>
-        <div class="bg-glow" style="background:radial-gradient(ellipse 50% 60% at 20% 50%, rgba(57,255,20,0.05) 0%, transparent 60%)"></div>
+        <div class="bg-glow" style="position:absolute;width:1920px;height:1080px;pointer-events:none;z-index:0;background:radial-gradient(ellipse 50% 60% at 20% 50%, rgba(57,255,20,0.05) 0%, transparent 60%)"></div>
         <div class="content" style="flex-direction:row;align-items:center;gap:80px">
           <div style="flex:1">
             <div class="s3-headline">Natural<br /><span class="green">language</span><br />driven.</div>
@@ -605,31 +464,31 @@
             </div>
             <div class="s3-card" style="border-color:#39FF1444">
               <div class="s3-card-header">RESULT</div>
-              <div class="s3-card-body"><span class="hl">✓ 完成</span> — 桌面已整理</div>
+              <div class="s3-card-body"><span class="hl">&#10003; 完成</span> &#x2014; 桌面已整理</div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- ═══ SCENE 4: Permissions (19–28s) ═══ -->
+      <!-- ===== SCENE 4: Permissions (8-12s) ===== -->
       <div id="scene4" class="scene">
         <div class="bg-grid"></div>
-        <div class="bg-glow" style="background:radial-gradient(ellipse 50% 50% at 75% 50%, rgba(57,255,20,0.05) 0%, transparent 60%)"></div>
+        <div class="bg-glow" style="position:absolute;width:1920px;height:1080px;pointer-events:none;z-index:0;background:radial-gradient(ellipse 50% 50% at 75% 50%, rgba(57,255,20,0.05) 0%, transparent 60%)"></div>
         <div class="content" style="flex-direction:row;align-items:center;gap:60px">
           <div style="flex:1">
             <div class="s4-label">// SECURITY MODEL</div>
             <div class="s4-headline">Three-tier<br /><span class="green">permission</span><br />control.</div>
             <div id="s4-perms">
               <div class="s4-perm-row">
-                <div class="s4-perm-badge badge-chat">💬 CHAT</div>
+                <div class="s4-perm-badge badge-chat">CHAT</div>
                 <div class="s4-perm-desc">只能聊天，不执行任何命令</div>
               </div>
               <div class="s4-perm-row">
-                <div class="s4-perm-badge badge-std">⚡ STANDARD</div>
+                <div class="s4-perm-badge badge-std">STANDARD</div>
                 <div class="s4-perm-desc">可执行命令，高危操作需二次确认</div>
               </div>
               <div class="s4-perm-row">
-                <div class="s4-perm-badge badge-full">🔓 FULL ACCESS</div>
+                <div class="s4-perm-badge badge-full">FULL ACCESS</div>
                 <div class="s4-perm-desc">自动执行，删除操作先压缩备份</div>
               </div>
             </div>
@@ -649,23 +508,23 @@
         </div>
       </div>
 
-      <!-- ═══ SCENE 5: Dual Mode (28–35s) ═══ -->
+      <!-- ===== SCENE 5: Dual Mode (12-15s) ===== -->
       <div id="scene5" class="scene">
         <div class="bg-grid"></div>
-        <div class="bg-glow" style="background:radial-gradient(ellipse 60% 50% at 50% 50%, rgba(57,255,20,0.04) 0%, transparent 60%)"></div>
+        <div class="bg-glow" style="position:absolute;width:1920px;height:1080px;pointer-events:none;z-index:0;background:radial-gradient(ellipse 60% 50% at 50% 50%, rgba(57,255,20,0.04) 0%, transparent 60%)"></div>
         <div class="content" style="align-items:flex-start">
           <div style="font-size:20px;font-family:'JetBrains Mono',monospace;color:#39FF14;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:20px" id="s5-label">// INTELLIGENT SWITCHING</div>
           <div class="s5-headline" id="s5-head">Double model.<br /><span class="green">One voice.</span></div>
           <div class="s5-sub" id="s5-sub">DeepSeek V4 Flash 处理简单任务，V4 Pro 应对复杂工程。自动判断，智能切换。</div>
           <div class="s5-grid">
             <div class="s5-mode-card" id="s5-flash">
-              <div class="s5-mode-icon">⚡</div>
+              <div class="s5-mode-icon">&#9889;</div>
               <div class="s5-mode-name">Flash</div>
               <div class="s5-mode-desc">快速响应，适合简单指令<br>批量处理、文件操作</div>
             </div>
             <div class="s5-vs">VS</div>
             <div class="s5-mode-card active" id="s5-pro">
-              <div class="s5-mode-icon">🧠</div>
+              <div class="s5-mode-icon">&#129504;</div>
               <div class="s5-mode-name">Pro</div>
               <div class="s5-mode-desc">深度推理，复杂工程任务<br>多步骤规划、代码生成</div>
             </div>
@@ -673,43 +532,43 @@
         </div>
       </div>
 
-      <!-- ═══ SCENE 6: Security (35–40s) ═══ -->
+      <!-- ===== SCENE 6: Security (15-17.5s) ===== -->
       <div id="scene6" class="scene">
         <div class="bg-grid"></div>
-        <div class="bg-glow" style="background:radial-gradient(ellipse 40% 50% at 75% 50%, rgba(57,255,20,0.06) 0%, transparent 50%)"></div>
+        <div class="bg-glow" style="position:absolute;width:1920px;height:1080px;pointer-events:none;z-index:0;background:radial-gradient(ellipse 40% 50% at 75% 50%, rgba(57,255,20,0.06) 0%, transparent 50%)"></div>
         <div class="content" style="flex-direction:row;align-items:center;gap:80px">
           <div>
             <div style="font-size:20px;font-family:'JetBrains Mono',monospace;color:#39FF14;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:20px" id="s6-label">// LOCAL FIRST</div>
             <div class="s6-headline">Your data<br /><span class="green">stays local.</span></div>
             <div class="s6-desc">API Key 只保存在本地，不上传任何代码。所有命令执行都有超时保护，随时可中断。</div>
             <div class="s6-features" id="s6-features">
-              <div class="s6-feat"><div class="s6-feat-icon">🔑</div>API Key 本地加密存储</div>
-              <div class="s6-feat"><div class="s6-feat-icon">⏱</div>命令执行超时保护</div>
-              <div class="s6-feat"><div class="s6-feat-icon">🛑</div>随时停止，立即中断</div>
-              <div class="s6-feat"><div class="s6-feat-icon">📁</div>删除操作自动备份</div>
+              <div class="s6-feat"><div class="s6-feat-icon">&#128274;</div>API Key 本地加密存储</div>
+              <div class="s6-feat"><div class="s6-feat-icon">&#9201;</div>命令执行超时保护</div>
+              <div class="s6-feat"><div class="s6-feat-icon">&#128683;</div>随时停止，立即中断</div>
+              <div class="s6-feat"><div class="s6-feat-icon">&#128193;</div>删除操作自动备份</div>
             </div>
           </div>
           <div class="s6-right" id="s6-lock">
-            <div class="s6-lock">🔒</div>
+            <div class="s6-lock">&#128274;</div>
           </div>
         </div>
       </div>
 
-      <!-- ═══ SCENE 7: CTA (40–42s) ═══ -->
+      <!-- ===== SCENE 7: CTA (17.5-19s) ===== -->
       <div id="scene7" class="scene">
         <div class="bg-grid"></div>
-        <div class="bg-glow" style="background:radial-gradient(ellipse 70% 60% at 50% 40%, rgba(57,255,20,0.07) 0%, transparent 60%)"></div>
+        <div class="bg-glow" style="position:absolute;width:1920px;height:1080px;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 60% at 50% 40%, rgba(57,255,20,0.07) 0%, transparent 60%)"></div>
         <div class="bg-ghost" style="top:10%;left:50%;transform:translate(-50%,-50%);font-size:400px;opacity:0.02">CODE</div>
         <div class="content s7-content">
           <div class="s7-label">Start building today</div>
           <div class="s7-title">SEEK<span>CODE</span></div>
           <div class="s7-url"><span>github.com</span>/xxwkf752tf-sudo/SeekCode</div>
           <div class="s7-cta" id="s7-cta">
-            <span>★</span> Star on GitHub
+            <span>&#9733;</span> Star on GitHub
           </div>
           <div class="s7-footer" id="s7-footer">
-            <div><span class="dot"></span>Open Source · MIT License</div>
-            <div class="mono" style="color:#333">Windows 10/11 · Python 3.10+</div>
+            <div><span class="dot"></span>Open Source &#xB7; MIT License</div>
+            <div class="mono" style="color:#333">Windows 10/11 &#xB7; Python 3.10+</div>
           </div>
         </div>
       </div>
@@ -720,135 +579,205 @@
       window.__timelines = window.__timelines || {};
       const tl = gsap.timeline({ paused: true });
 
-      const TRANS_DUR = 0.15;
-      const TRANS_EASE = "power4.inOut";
-      const BLOCKS = document.querySelectorAll(".ts-block");
+      // -- 6 distinct transition groups --
+      const GREEN  = document.querySelectorAll('.ts-green');
+      const ORANGE = document.querySelectorAll('.ts-orange');
+      const BLUE   = document.querySelectorAll('.ts-blue');
+      const CYAN   = document.querySelectorAll('.ts-cyan');
+      const PURPLE = document.querySelectorAll('.ts-purple');
+      const RED    = document.querySelectorAll('.ts-red');
 
-      function pushSlide(from, to, start) {
-        // No gap — immediate overlap
+      // T1: Green diagonal flash (0.10s)
+      function transGreen(from, to, start) {
         tl.set(to, { opacity: 1 });
-        tl.fromTo(BLOCKS,
-          { scaleY: 0, transformOrigin: "top" },
-          { scaleY: 1, duration: TRANS_DUR * 0.5, ease: TRANS_EASE, stagger: 0.01 },
+        tl.fromTo(GREEN,
+          { skewX: -30, opacity: 0 },
+          { skewX: 0, opacity: 1, duration: 0.05, ease: 'power2.out' },
           start
         );
-        tl.to(BLOCKS,
-          { scaleY: 0, transformOrigin: "bottom", duration: TRANS_DUR * 0.5, ease: TRANS_EASE, stagger: 0.01 },
-          start + TRANS_DUR * 0.5
+        tl.to(GREEN,
+          { skewX: 30, opacity: 0, duration: 0.05, ease: 'power2.in' },
+          start + 0.05
         );
-        tl.set(from, { opacity: 0 }, start + TRANS_DUR);
+        tl.set(from, { opacity: 0 }, start + 0.10);
       }
 
-      // ═══ Scene 1: Title (0–6s) — IMMEDIATE START ═══
-      tl.set("#scene1", { opacity: 1 });
-      tl.from(".s1-tag", { y: -30, opacity: 0, duration: 0.35, ease: "power3.out" }, 0);
-      tl.from(".s1-title", { y: 60, opacity: 0, duration: 0.5, ease: "back.out(1.6)" }, 0.15);
-      tl.from(".s1-sub", { y: 40, opacity: 0, duration: 0.35, ease: "power2.out" }, 0.4);
-      tl.from(".s1-stat-val", { y: 30, opacity: 0, duration: 0.3, ease: "power2.out" }, 0.7, "-=0.15");
-      tl.from(".s1-stat-label", { y: 20, opacity: 0, duration: 0.3, ease: "power2.out" }, 0.85, "-=0.15");
-      tl.from(".s1-line", { scaleX: 0, duration: 0.4, ease: "power2.out" }, 1.2);
-      // Counter animations
-      tl.to({ val: 0 }, { val: 347, duration: 1.2, ease: "power2.out",
-        onUpdate: function() { document.getElementById("s1-stat1").textContent = Math.round(this.targets()[0].val); }}, 0.7);
-      tl.to({ val: 0 }, { val: 3, duration: 0.5, ease: "power2.out",
-        onUpdate: function() { document.getElementById("s1-stat2").textContent = Math.round(this.targets()[0].val); }}, 0.9);
-      tl.to({ val: 0 }, { val: 120, duration: 0.8, ease: "power2.out",
-        onUpdate: function() { document.getElementById("s1-stat3").textContent = Math.round(this.targets()[0].val); }}, 1.0);
-      // Ambient glow
-      tl.to(".bg-glow-1", { scale: 1.05, opacity: 0.8, duration: 2, ease: "sine.inOut", repeat: 8 }, 0);
+      // T2: Orange horizontal wipe (0.08s)
+      function transOrange(from, to, start) {
+        tl.set(to, { opacity: 1 });
+        tl.fromTo(ORANGE,
+          { scaleX: 0, transformOrigin: 'left center' },
+          { scaleX: 1, duration: 0.04, ease: 'power3.inOut', stagger: 0.003 },
+          start
+        );
+        tl.to(ORANGE,
+          { scaleX: 0, transformOrigin: 'right center', duration: 0.04, ease: 'power3.inOut', stagger: 0.003 },
+          start + 0.04
+        );
+        tl.set(from, { opacity: 0 }, start + 0.08);
+      }
 
-      // ═══ Transition 1→2 (6s, no gap) ═══
-      pushSlide("#scene1", "#scene2", 5.8);
+      // T3: Blue vertical cut (0.10s)
+      function transBlue(from, to, start) {
+        tl.set(to, { opacity: 1 });
+        tl.fromTo(BLUE,
+          { scaleY: 0, transformOrigin: 'bottom' },
+          { scaleY: 1, duration: 0.05, ease: 'power3.inOut', stagger: 0.003 },
+          start
+        );
+        tl.to(BLUE,
+          { scaleY: 0, transformOrigin: 'top', duration: 0.05, ease: 'power3.inOut', stagger: 0.003 },
+          start + 0.05
+        );
+        tl.set(from, { opacity: 0 }, start + 0.10);
+      }
 
-      // ═══ Scene 2: Problem (6–12s) ═══
-      tl.from(".s2-label", { x: -30, opacity: 0, duration: 0.3, ease: "power3.out" }, 6.0);
-      tl.from(".s2-headline", { y: 50, opacity: 0, duration: 0.45, ease: "back.out(1.5)" }, 6.1);
-      tl.from(".s2-desc", { y: 30, opacity: 0, duration: 0.35, ease: "power2.out" }, 6.5);
-      tl.from(".s2-terminal", { x: 60, opacity: 0, duration: 0.4, ease: "power3.out" }, 6.8);
-      tl.set("#scene2", { opacity: 1 });
+      // T4: Cyan cross-flash (0.07s)
+      function transCyan(from, to, start) {
+        tl.set(to, { opacity: 1 });
+        tl.fromTo(CYAN,
+          { scale: 0, opacity: 0 },
+          { scale: 1.2, opacity: 1, duration: 0.03, ease: 'back.out(2)' },
+          start
+        );
+        tl.to(CYAN,
+          { scale: 1.5, opacity: 0, duration: 0.04, ease: 'power2.in' },
+          start + 0.03
+        );
+        tl.set(from, { opacity: 0 }, start + 0.07);
+      }
 
-      // ═══ Transition 2→3 (12s) ═══
-      pushSlide("#scene2", "#scene3", 11.7);
+      // T5: Purple ripple (0.09s)
+      function transPurple(from, to, start) {
+        tl.set(to, { opacity: 1 });
+        tl.fromTo(PURPLE,
+          { clipPath: 'circle(0% at 50% 50%)' },
+          { clipPath: 'circle(100% at 50% 50%)', duration: 0.04, ease: 'power2.out' },
+          start
+        );
+        tl.to(PURPLE,
+          { clipPath: 'circle(0% at 50% 50%)', duration: 0.05, ease: 'power2.in' },
+          start + 0.04
+        );
+        tl.set(from, { opacity: 0 }, start + 0.09);
+      }
 
-      // ═══ Scene 3: Natural Language (12–19s) ═══
-      tl.from(".s3-headline", { y: 50, opacity: 0, duration: 0.45, ease: "back.out(1.5)" }, 12.0);
-      tl.from(".s3-sub", { y: 30, opacity: 0, duration: 0.35, ease: "power2.out" }, 12.4);
-      tl.from(".s3-card", { x: 50, opacity: 0, duration: 0.3, ease: "power3.out" }, 12.8, "-=0.05");
-      tl.set("#scene3", { opacity: 1 });
+      // T6: Red impact flash (0.06s)
+      function transRed(from, to, start) {
+        tl.set(to, { opacity: 1 });
+        tl.set(RED, { opacity: 0.9 }, start);
+        tl.to(RED,
+          { opacity: 0, duration: 0.06, ease: 'power2.in' },
+          start
+        );
+        tl.set(from, { opacity: 0 }, start + 0.06);
+      }
 
-      // ═══ Transition 3→4 (19s) ═══
-      pushSlide("#scene3", "#scene4", 18.6);
+      // === Scene 1: Title (0-2.5s) ===
+      tl.set('#scene1', { opacity: 1 });
+      tl.from('.s1-tag', { y: -20, opacity: 0, duration: 0.18, ease: 'power3.out' }, 0);
+      tl.from('.s1-title', { y: 40, opacity: 0, duration: 0.25, ease: 'back.out(1.6)' }, 0.05);
+      tl.from('.s1-sub', { y: 25, opacity: 0, duration: 0.18, ease: 'power2.out' }, 0.18);
+      tl.from('.s1-stat-val', { y: 20, opacity: 0, duration: 0.15, ease: 'power2.out' }, 0.3, '-=0.05');
+      tl.from('.s1-stat-label', { y: 15, opacity: 0, duration: 0.15, ease: 'power2.out' }, 0.4);
+      tl.from('.s1-line', { scaleX: 0, duration: 0.18, ease: 'power2.out' }, 0.55);
+      tl.to({ val: 0 }, { val: 347, duration: 0.5, ease: 'power2.out',
+        onUpdate: function() { document.getElementById('s1-stat1').textContent = Math.round(this.targets()[0].val); }}, 0.3);
+      tl.to({ val: 0 }, { val: 3, duration: 0.2, ease: 'power2.out',
+        onUpdate: function() { document.getElementById('s1-stat2').textContent = Math.round(this.targets()[0].val); }}, 0.45);
+      tl.to({ val: 0 }, { val: 120, duration: 0.35, ease: 'power2.out',
+        onUpdate: function() { document.getElementById('s1-stat3').textContent = Math.round(this.targets()[0].val); }}, 0.5);
 
-      // ═══ Scene 4: Permissions (19–28s) ═══
-      tl.from(".s4-label", { x: -30, opacity: 0, duration: 0.3, ease: "power3.out" }, 19.0);
-      tl.from(".s4-headline", { y: 50, opacity: 0, duration: 0.45, ease: "back.out(1.5)" }, 19.1);
-      tl.from(".s4-perm-row", { x: -40, opacity: 0, duration: 0.3, ease: "power2.out" }, 19.7, 0.1);
-      tl.from(".s4-right", { x: 40, opacity: 0, duration: 0.4, ease: "power3.out" }, 20.5);
-      tl.set("#scene4", { opacity: 1 });
+      // Transition 1->2: Green diagonal flash (2.35s)
+      transGreen('#scene1', '#scene2', 2.35);
 
-      // ═══ Transition 4→5 (28s) ═══
-      pushSlide("#scene4", "#scene5", 27.5);
+      // === Scene 2: Problem (2.5-5s) ===
+      tl.from('.s2-label', { x: -20, opacity: 0, duration: 0.15, ease: 'power3.out' }, 2.5);
+      tl.from('.s2-headline', { y: 35, opacity: 0, duration: 0.22, ease: 'back.out(1.5)' }, 2.55);
+      tl.from('.s2-desc', { y: 20, opacity: 0, duration: 0.15, ease: 'power2.out' }, 2.75);
+      tl.from('.s2-terminal', { x: 40, opacity: 0, duration: 0.18, ease: 'power3.out' }, 2.9);
+      tl.set('#scene2', { opacity: 1 });
 
-      // ═══ Scene 5: Dual Mode (28–35s) ═══
-      tl.from("#s5-label", { x: -30, opacity: 0, duration: 0.3, ease: "power3.out" }, 28.0);
-      tl.from("#s5-head", { y: 50, opacity: 0, duration: 0.45, ease: "back.out(1.5)" }, 28.1);
-      tl.from(".s5-sub", { y: 30, opacity: 0, duration: 0.35, ease: "power2.out" }, 28.5);
-      tl.from(".s5-mode-card", { scale: 0.85, opacity: 0, duration: 0.35, ease: "power3.out" }, 29.0, 0.12);
-      tl.from(".s5-vs", { scale: 0, opacity: 0, duration: 0.25, ease: "back.out(2)" }, 29.5);
-      tl.set("#scene5", { opacity: 1 });
+      // Transition 2->3: Orange horizontal wipe (4.85s)
+      transOrange('#scene2', '#scene3', 4.85);
 
-      // ═══ Transition 5→6 (35s) ═══
-      pushSlide("#scene5", "#scene6", 34.4);
+      // === Scene 3: Natural Language (5-8s) ===
+      tl.from('.s3-headline', { y: 35, opacity: 0, duration: 0.22, ease: 'back.out(1.5)' }, 5.0);
+      tl.from('.s3-sub', { y: 20, opacity: 0, duration: 0.15, ease: 'power2.out' }, 5.18);
+      tl.from('.s3-card', { x: 35, opacity: 0, duration: 0.15, ease: 'power3.out' }, 5.33, '-=0.03');
+      tl.set('#scene3', { opacity: 1 });
 
-      // ═══ Scene 6: Security (35–40s) ═══
-      tl.from("#s6-label", { x: -30, opacity: 0, duration: 0.3, ease: "power3.out" }, 35.0);
-      tl.from(".s6-headline", { y: 50, opacity: 0, duration: 0.45, ease: "back.out(1.5)" }, 35.1);
-      tl.from(".s6-desc", { y: 30, opacity: 0, duration: 0.35, ease: "power2.out" }, 35.5);
-      tl.from(".s6-feat", { x: -30, opacity: 0, duration: 0.25, ease: "power2.out" }, 35.9, 0.08);
-      tl.from(".s6-right", { scale: 0.8, opacity: 0, duration: 0.35, ease: "power3.out" }, 36.5);
-      tl.set("#scene6", { opacity: 1 });
+      // Transition 3->4: Blue vertical cut (7.85s)
+      transBlue('#scene3', '#scene4', 7.85);
 
-      // ═══ Transition 6→7 (40s) ═══
-      pushSlide("#scene6", "#scene7", 39.4);
+      // === Scene 4: Permissions (8-12s) ===
+      tl.from('.s4-label', { x: -20, opacity: 0, duration: 0.15, ease: 'power3.out' }, 8.0);
+      tl.from('.s4-headline', { y: 35, opacity: 0, duration: 0.22, ease: 'back.out(1.5)' }, 8.05);
+      tl.from('.s4-perm-row', { x: -30, opacity: 0, duration: 0.15, ease: 'power2.out' }, 8.3, 0.05);
+      tl.from('.s4-right', { x: 30, opacity: 0, duration: 0.18, ease: 'power3.out' }, 8.7);
+      tl.set('#scene4', { opacity: 1 });
 
-      // ═══ Scene 7: CTA (40–42s) ═══
-      tl.from(".s7-label", { y: -20, opacity: 0, duration: 0.3, ease: "power3.out" }, 40.0);
-      tl.from(".s7-title", { y: 60, opacity: 0, duration: 0.45, ease: "back.out(1.6)" }, 40.1);
-      tl.from(".s7-url", { y: 30, opacity: 0, duration: 0.3, ease: "power2.out" }, 40.5);
-      tl.from(".s7-cta", { scale: 0.8, opacity: 0, duration: 0.35, ease: "back.out(1.8)" }, 40.7);
-      tl.from(".s7-footer", { y: 20, opacity: 0, duration: 0.25, ease: "power2.out" }, 41.0);
-      tl.to("#scene7", { opacity: 0, duration: 0.5 }, 41.5);
-      tl.set("#scene7", { opacity: 0 }, 41.9);
-      tl.set("#caption-bar", { opacity: 0 }, 41.7);
-      tl.set("#scene7", { opacity: 1 });
+      // Transition 4->5: Cyan cross-flash (11.85s)
+      transCyan('#scene4', '#scene5', 11.85);
 
-      window.__timelines["main"] = tl;
+      // === Scene 5: Dual Mode (12-15s) ===
+      tl.from('#s5-label', { x: -20, opacity: 0, duration: 0.15, ease: 'power3.out' }, 12.0);
+      tl.from('#s5-head', { y: 35, opacity: 0, duration: 0.22, ease: 'back.out(1.5)' }, 12.05);
+      tl.from('.s5-sub', { y: 20, opacity: 0, duration: 0.15, ease: 'power2.out' }, 12.2);
+      tl.from('.s5-mode-card', { scale: 0.85, opacity: 0, duration: 0.15, ease: 'power3.out' }, 12.35, 0.06);
+      tl.from('.s5-vs', { scale: 0, opacity: 0, duration: 0.12, ease: 'back.out(2)' }, 12.5);
+      tl.set('#scene5', { opacity: 1 });
 
-      // ── Captions (aligned to new timing) ──
+      // Transition 5->6: Purple ripple (14.85s)
+      transPurple('#scene5', '#scene6', 14.85);
+
+      // === Scene 6: Security (15-17.5s) ===
+      tl.from('#s6-label', { x: -20, opacity: 0, duration: 0.15, ease: 'power3.out' }, 15.0);
+      tl.from('.s6-headline', { y: 35, opacity: 0, duration: 0.22, ease: 'back.out(1.5)' }, 15.05);
+      tl.from('.s6-desc', { y: 20, opacity: 0, duration: 0.15, ease: 'power2.out' }, 15.2);
+      tl.from('.s6-feat', { x: -20, opacity: 0, duration: 0.12, ease: 'power2.out' }, 15.35, 0.04);
+      tl.from('.s6-right', { scale: 0.85, opacity: 0, duration: 0.15, ease: 'power3.out' }, 15.5);
+      tl.set('#scene6', { opacity: 1 });
+
+      // Transition 6->7: Red impact flash (17.35s)
+      transRed('#scene6', '#scene7', 17.35);
+
+      // === Scene 7: CTA (17.5-19s) ===
+      tl.from('.s7-label', { y: -15, opacity: 0, duration: 0.15, ease: 'power3.out' }, 17.5);
+      tl.from('.s7-title', { y: 40, opacity: 0, duration: 0.22, ease: 'back.out(1.6)' }, 17.55);
+      tl.from('.s7-url', { y: 20, opacity: 0, duration: 0.15, ease: 'power2.out' }, 17.7);
+      tl.from('.s7-cta', { scale: 0.85, opacity: 0, duration: 0.15, ease: 'back.out(1.8)' }, 17.8);
+      tl.from('.s7-footer', { y: 15, opacity: 0, duration: 0.12, ease: 'power2.out' }, 18.0);
+      tl.to('#caption-bar', { opacity: 0 }, 18.6);
+      tl.set('#scene7', { opacity: 0 }, 18.8);
+      tl.set('#scene7', { opacity: 1 });
+
+      window.__timelines['main'] = tl;
+
+      // -- Captions --
       const CAPTIONS = [
-        { start: 0.1, end: 5.5, text: "SeekCode —— 一个让 AI 通过自然语言帮你操作电脑的 Windows 桌面助手。" },
-        { start: 6.2, end: 10.5, text: "你不需要记住命令。把任务说给 AI 听，它自己拆解步骤、调用终端、完成操作。" },
-        { start: 12.2, end: 16.5, text: "用大白话描述需求，AI 理解意图，自主规划并执行。" },
-        { start: 19.2, end: 25.5, text: "三级权限控制：对话模式、标准模式、完全访问模式。高危操作自动备份，随时可中断。" },
-        { start: 28.2, end: 33.0, text: "双模型自动切换：Flash 处理简单任务，Pro 应对复杂工程。智能判断，快人一步。" },
-        { start: 35.2, end: 39.5, text: "API Key 本地加密存储，所有命令执行都有超时保护。你的数据，始终在你手中。" },
-        { start: 40.2, end: 42.0, text: "SeekCode —— 打开 GitHub，星标这个仓库，开始你的 AI 桌面助手之旅。" },
+        { start: 0.05, end: 2.3, text: 'SeekCode 让AI直接操作你的电脑，三秒出结果。' },
+        { start: 2.6, end: 4.7, text: '不用记命令，把任务说给AI听，它自己执行。' },
+        { start: 5.1, end: 7.7, text: '用大白话描述需求，AI理解意图，一气呵成。' },
+        { start: 8.1, end: 11.7, text: '三级权限控制：对话、标准、完全访问。高危操作自动备份。' },
+        { start: 12.1, end: 14.7, text: '双模型智能切换：Flash快速，Pro强大。' },
+        { start: 15.1, end: 17.2, text: 'API Key本地存储，数据永不上传。' },
+        { start: 17.6, end: 19.0, text: 'SeekCode -- GitHub等你。' },
       ];
 
-      const capEl = document.getElementById("caption-text");
-      let currentCap = -1;
+      const capEl = document.getElementById('caption-text');
 
       CAPTIONS.forEach((c, i) => {
-        tl.set(capEl, { opacity: 0, visibility: i === 0 ? "visible" : "hidden" }, c.start - 0.05);
-        tl.to(capEl, { opacity: 1, duration: 0.12, ease: "power2.out" }, c.start);
-        tl.to(capEl, { opacity: 0, duration: 0.1, ease: "power2.in" }, c.end - 0.1);
-        tl.set(capEl, { opacity: 0, visibility: "hidden" }, c.end);
-        CAPTIONS[i].el = capEl;
+        const vis = i === 0 ? 'visible' : 'hidden';
+        tl.set(capEl, { opacity: 0, visibility: vis }, c.start - 0.03);
+        tl.to(capEl, { opacity: 1, duration: 0.06, ease: 'power2.out' }, c.start);
+        tl.to(capEl, { opacity: 0, duration: 0.05, ease: 'power2.in' }, c.end - 0.05);
+        tl.set(capEl, { opacity: 0, visibility: 'hidden' }, c.end);
       });
 
       CAPTIONS.forEach((c, i) => {
         if (i < CAPTIONS.length - 1) {
-          tl.set(capEl, { visibility: "visible" }, CAPTIONS[i + 1].start - 0.08);
+          tl.set(capEl, { visibility: 'visible' }, CAPTIONS[i + 1].start - 0.05);
         }
       });
     </script>
